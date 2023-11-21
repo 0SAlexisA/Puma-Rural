@@ -229,7 +229,7 @@ case 1:
                 scanf("%s", facultad);
 
                 printf("\nIntroduce tu edad:\n");
-                scanf("%d", edad);
+                scanf("%d", &edad);
 
                 agregarUsuarioEnLista(nombre, email, facultad, edad);
                 break;
