@@ -125,7 +125,6 @@ void agregarNodoGrafo(struct NodoGrafo** cabeza, struct Usuario* usuario) {
 ///////////////////////////////////////////// Árbol Binario ///////////////////////////////////////////////////////////////
 
 
-struct NodoArbol* arbolEdades = NULL;
 
 
 struct NodoArbol {
@@ -133,6 +132,8 @@ struct NodoArbol {
     struct NodoArbol* izquierda;
     struct NodoArbol* derecha;
 };
+
+struct NodoArbol* arbolEdades = NULL;
 
 // Función para crear un nuevo nodo
 struct NodoArbol* crearNodo(int valor) {
@@ -143,24 +144,18 @@ struct NodoArbol* crearNodo(int valor) {
 }
 
 // Función para insertar un nuevo nodo en el árbol
-struct NodoArbol* insertar(struct NodoArbol* arbolEdades, int valor) {
-    // Si la raíz es NULL, se crea un nuevo nodo
-    if (arbolEdades == NULL) {
+struct NodoArbol* insertar(struct NodoArbol* edad, int valor) {
+    if (edad == NULL) {
         return crearNodo(valor);
     }
 
-    // Si el valor es menor que el valor de la raíz, se inserta en el subárbol izquierdo
-    if (valor < arbolEdades->dato) {
-        arbolEdades->izquierda = insertar(arbolEdades->izquierda, valor);
-    }
-    // Si el valor es mayor que el valor de la raíz, se inserta en el subárbol derecho
-    else if (valor > arbolEdades->dato) {
-        arbolEdades->derecha = insertar(arbolEdades->derecha, valor);
+    if (valor < edad->dato) {
+        edad->izquierda = insertar(edad->izquierda, valor);
+    } else if (valor > edad->dato) {
+        edad->derecha = insertar(edad->derecha, valor);
     }
 
-    // Si el valor ya existe en el árbol, no se hace nada (no se permiten duplicados)
-
-    return arbolEdades;
+    return edad;
 }
 
 // Función para realizar un recorrido inorden (inorder traversal) del árbol
@@ -234,18 +229,18 @@ case 1:
                 scanf("%s", facultad);
 
                 printf("\nIntroduce tu edad:\n");
-                scanf("%d", &edad);
+                scanf("%d", edad);
 
                 agregarUsuarioEnLista(nombre, email, facultad, edad);
                 break;
 
 // Agregar el nuevo usuario a la lista
- struct Usuario nuevoUsuarioLocal;
-Usuario[numUsuarios] = nuevoUsuarioLocal;
-numUsuarios++;
+struct Usuario nuevoUsuarioLocal;
 
 // Agregar la edad al árbol
-arbolEdades = insertar(arbolEdades, edad);
+arbolEdades = insertar(arbolEdades, nuevoUsuarioLocal.edad);
+Usuario[numUsuarios] = nuevoUsuarioLocal;
+numUsuarios++;
 
 
 //menu donde muestra las rutas del pumabus Foraneo
@@ -589,7 +584,7 @@ case 3:
 case 4:
 
  printf("\nSeleccionaste: Consultar Grafo\n");
-
+ system("clear"); {
     // Construir el grafo utilizando la información de los usuarios
     for (int i = 0; i < numUsuarios; ++i) {
         agregarNodoGrafo(&grafo, &Usuario[i]);
@@ -617,13 +612,14 @@ case 4:
         current = current->siguiente;
     }
     break;
+}
 
 case 5:
 
-    printf("Recorrido Inorden: ");
-    inorden(arbolEdades);
-    printf("\n");
-    break;
+        printf("Recorrido Inorden es:%s", &edad);
+        inorden(arbolEdades);
+        printf("\n");
+            break;
 
 
 case 6:
@@ -635,7 +631,7 @@ case 6:
                 break;
         
    				 	}
-    } while (opcion != 5);
+    } while (opcion != 6);
 
     return 0;
 
